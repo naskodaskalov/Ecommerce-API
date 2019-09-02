@@ -61,5 +61,7 @@
 <h2>Endpoints</h2>
 <ul>
 <li><strong>"/products"</strong> - This will retrieve all products from the in-memory DB.<li>
+<li><strong>"/products/edit/:id"</strong> - By sending "id" as parameter to this endpoint, you can edit product.<li>
+<li><strong>"/products/delete/:id"</strong> - By sending "id" as parameter to this endpoint, you can delete product.<li>
 </ul>
 
