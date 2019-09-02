@@ -1,0 +1,29 @@
+{
+  "name": "ecommerce-api",
+  "version": "1.0.0",
+  "description": "Implement a REST API to manage PRODUCTS and ORDERS, using public VAT API to get country tax rates.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naskodaskalov/Ecommerce-API.git"
+  },
+  "keywords": [
+    "ecommerce",
+    "api"
+  ],
+  "author": "NaskoDaskalov",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/naskodaskalov/Ecommerce-API/issues"
+  },
+  "homepage": "https://github.com/naskodaskalov/Ecommerce-API#readme",
+  "dependencies": {
+    "cors": "2.8.5",
+    "express": "4.17.1",
+    "nodemon": "1.19.1"
+  }
+}
