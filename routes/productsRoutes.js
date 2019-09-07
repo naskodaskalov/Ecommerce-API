@@ -1,5 +1,6 @@
 const express = require('express')
 const productsData = require('../data/productsData')
+const authCheck = require('../middleware/auth-check')
 const router = express.Router()
 const fs = require('fs')
 const products = fs.readFileSync('./ProductsDB.json')
@@ -10,7 +11,7 @@ router.get('/', (req, res) => {
   res.status(200).json(products)
 })
 
-router.post('/create', (req, res) => {
+router.post('/create', authCheck, (req, res) => {
   const product = req.body
 
   productsData.create(product)
@@ -26,7 +27,7 @@ router.post('/create', (req, res) => {
   })
 })
 
-router.put('/edit/:id', (req, res) => {
+router.put('/edit/:id', authCheck, (req, res) => {
   const id = parseInt(req.params.id, 10)
   let productFound = productsData.edit(id)
   let itemIndex = productFound ? productFound.id - 1 : ''
@@ -63,7 +64,7 @@ router.put('/edit/:id', (req, res) => {
   })
 })
 
-router.delete('/delete/:id', (req, res) => {
+router.delete('/delete/:id', authCheck, (req, res) => {
   const id = parseInt(req.params.id, 10)
   let productFound = productsData.delete(id)
   let itemIndex = productFound ? productFound.id - 1 : ''
