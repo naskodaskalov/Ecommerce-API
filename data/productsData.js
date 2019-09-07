@@ -3,7 +3,13 @@ const productsDB = JSON.parse(fs.readFileSync('./ProductsDB.json'))
 let currentId = productsDB.length
 
 module.exports = {
-  all: (req, res) => {
+  all: (taxRate) => {
+    let taxRateParsed = parseFloat(taxRate)
+    for (let i = 0; i < productsDB.length; i++) {
+      let price = parseFloat(productsDB[i].price)
+      let priceWithVAT = price * taxRateParsed / 100 + price
+      productsDB[i].price = priceWithVAT
+    }
     return productsDB
   },
   isProductExist: (productId) => {

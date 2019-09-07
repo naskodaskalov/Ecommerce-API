@@ -5,10 +5,28 @@ const router = express.Router()
 const fs = require('fs')
 const products = fs.readFileSync('./ProductsDB.json')
 var productsJson = JSON.parse(products)
+var request = require('request')
 
 router.get('/', (req, res) => {
-  const products = productsData.all()
-  res.status(200).json(products)
+  let standardBGRate
+  var options = { method: 'GET',
+    url: 'https://api.vatsense.com/1.0/rates',
+    qs: { country_code: 'BG' },
+    headers:
+    { 'Content-type': 'application/json',
+      authorization: 'Basic bmFza28uZGFza2Fsb3ZAYWJ2LmJnOmQ5YjU2MDgxNmU3MGI3NTM0N2Q1ZjRkNjMzMjFmOTEx' }
+  }
+
+  request(options, function (error, response, body) {
+    if (error) {
+      throw new Error(error)
+    }
+    let result = JSON.parse(body)
+    standardBGRate = result.data.standard.rate
+
+    const products = productsData.all(standardBGRate)
+    res.status(200).json(products)
+  })
 })
 
 router.post('/create', authCheck, (req, res) => {
