@@ -69,7 +69,6 @@ router.post('/signup', (req, res, next) => {
   }
 
   return passport.authenticate('local-signup', (err) => {
-    console.log(err)
     if (err) {
       return res.status(200).json({
         success: false,
@@ -103,7 +102,6 @@ router.post('/login', (req, res, next) => {
           message: err.message
         })
       }
-      console.log(err)
       return res.status(200).json({
         success: false,
         message: 'Could not process the form.'
@@ -113,8 +111,7 @@ router.post('/login', (req, res, next) => {
     return res.json({
       success: true,
       message: 'You have successfully logged in!',
-      token,
-      user: userData
+      token
     })
   })(req, res, next)
 })

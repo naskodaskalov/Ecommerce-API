@@ -1,11 +1,24 @@
 const fs = require('fs')
 const productsDB = JSON.parse(fs.readFileSync('./ProductsDB.json'))
-
 let currentId = productsDB.length
 
 module.exports = {
   all: (req, res) => {
     return productsDB
+  },
+  isProductExist: (productId) => {
+    let productExist = false
+
+    for (let i = 0; i < productsDB.length; i++) {
+      const product = productsDB[i]
+
+      if (product.id === productId) {
+        productExist = true
+        break
+      }
+    }
+
+    return productExist
   },
   create: (product) => {
     const id = ++currentId
@@ -24,7 +37,6 @@ module.exports = {
     let productFound
     productsDB.map(product => {
       if (product.id === productId) {
-        console.log(product)
         productFound = product
       }
     })
@@ -35,7 +47,6 @@ module.exports = {
     let productFound
     productsDB.map(product => {
       if (product.id === productId) {
-        console.log(product)
         productFound = product
       }
     })

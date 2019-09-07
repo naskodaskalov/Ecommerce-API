@@ -6,6 +6,7 @@ const localSignupStrategy = require('./passport/local-signup')
 const localLoginStrategy = require('./passport/local-login')
 const authRoutes = require('./routes/auth')
 const productsRoutes = require('./routes/productsRoutes')
+const ordersRoutes = require('./routes/ordersRoutes')
 
 const app = express()
 
@@ -22,6 +23,7 @@ passport.use('local-login', localLoginStrategy)
 // // routes
 app.use('/auth', authRoutes)
 app.use('/products', productsRoutes)
+app.use('/orders', ordersRoutes)
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}...`)

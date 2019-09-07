@@ -14,11 +14,22 @@ module.exports = {
       if (err) throw err
     })
   },
+  isUserExist: (username) => {
+    var userExist = false
+    for (let i = 0; i < usersJson.length; i++) {
+      const user = usersJson[i]
+      if (user.username === username) {
+        userExist = true
+        break
+      }
+    }
+
+    return userExist
+  },
   findByUsername: (username) => {
     var registeredUser = []
     for (let i = 0; i < usersJson.length; i++) {
       const user = usersJson[i]
-
       if (user.username === username) {
         return user
       }

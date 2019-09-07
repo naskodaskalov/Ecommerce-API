@@ -62,3 +62,6 @@ Technologies by choice. Optionally database can be in-memory for simplicity. Mak
 * **"/products/create"** - Create new product with sending name, price and category. Authorization required (Bearer 'token').
 * **"/products/edit/:id"** - By sending "id" as parameter to this endpoint, you can edit product. Authorization required (Bearer 'token').
 * **"/products/delete/:id"** - By sending "id" as parameter to this endpoint, you can delete product. Authorization required (Bearer 'token').
+* **"/orders/"** - List orders created by the logged-in user.. Authorization required (Bearer 'token').
+* **"/orders/createorder"** - Create new order by sending products id's. Authorization required (Bearer 'token').
+* **"/orders/changeorderstatus/:id"** - Change order status with sending order ID as url parameter. The new status should be 'Pending', 'Processing', 'Delivered' or 'Cancelled'. Authorization required (Bearer 'token').

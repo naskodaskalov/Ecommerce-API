@@ -13,7 +13,8 @@ module.exports = new PassportLocalStrategy({
     password: password.trim()
   }
 
-  const existingUser = usersData.findByUsername(username)
+  const existingUser = usersData.isUserExist(username)
+
   if (existingUser) {
     return done('Username already exists!')
   }
